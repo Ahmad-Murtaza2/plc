@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Flour Mill Production Dashboard - Real-time monitoring system">
+    <title>Flour Mill Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-icon">🏭</span>
+                <span class="plant-name">Al-Noor Flour Mill</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="header-info">
+                <div class="info-item">
+                    <span class="info-label">Date</span>
+                    <span class="info-value" id="current-date">20 Feb 2026</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Time</span>
+                    <span class="info-value" id="current-time">14:35:22</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Shift</span>
+                    <span class="info-value shift-badge">Morning</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="system-status status-normal">
+                <span class="status-dot"></span>
+                <span>System Normal</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- KPI Cards Row -->
+        <section class="kpi-section">
+            <div class="kpi-card">
+                <div class="kpi-icon">📦</div>
+                <div class="kpi-content">
+                    <span class="kpi-value">125.8</span>
+                    <span class="kpi-unit">Tons</span>
+                    <span class="kpi-label">Total Production Today</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">⚡</div>
+                <div class="kpi-content">
+                    <span class="kpi-value">8.2</span>
+                    <span class="kpi-unit">TPH</span>
+                    <span class="kpi-label">Instant Speed</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🎯</div>
+                <div class="kpi-content">
+                    <span class="kpi-value">150</span>
+                    <span class="kpi-unit">Tons</span>
+                    <span class="kpi-label">Target Production</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-content">
+                    <span class="kpi-value">83.9</span>
+                    <span class="kpi-unit">%</span>
+                    <span class="kpi-label">Efficiency</span>
+                </div>
+            </div>
+            <div class="kpi-card kpi-alarm">
+                <div class="kpi-icon">🚨</div>
+                <div class="kpi-content">
+                    <span class="kpi-value">2</span>
+                    <span class="kpi-unit">Active</span>
+                    <span class="kpi-label">Alarms</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bin Monitoring Section -->
+        <section class="bin-section">
+            <h2 class="section-title">Bin Monitoring</h2>
+            <div class="bin-grid">
+                <!-- Bin A -->
+                <div class="bin-card">
+                    <div class="bin-header">
+                        <span class="bin-name">BIN A</span>
+                        <span class="bin-status status-filling">Filling</span>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-container">
+                            <div class="bin-level" style="height: 72%;">
+                                <div class="bin-fill-animation"></div>
+                            </div>
+                            <div class="bin-setpoint" style="bottom: 85%;"></div>
+                        </div>
+                        <div class="bin-scale">
+                            <span>100%</span>
+                            <span>50%</span>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                    <div class="bin-info">
+                        <div class="bin-data">
+                            <span class="data-label">Current Level</span>
+                            <span class="data-value">72%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Weight</span>
+                            <span class="data-value">3,600 kg</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Setpoint</span>
+                            <span class="data-value">85%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Fill Rate</span>
+                            <span class="data-value">45 kg/min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bin B -->
+                <div class="bin-card">
+                    <div class="bin-header">
+                        <span class="bin-name">BIN B</span>
+                        <span class="bin-status status-idle">Idle</span>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-container">
+                            <div class="bin-level bin-level-idle" style="height: 45%;"></div>
+                            <div class="bin-setpoint" style="bottom: 80%;"></div>
+                        </div>
+                        <div class="bin-scale">
+                            <span>100%</span>
+                            <span>50%</span>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                    <div class="bin-info">
+                        <div class="bin-data">
+                            <span class="data-label">Current Level</span>
+                            <span class="data-value">45%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Weight</span>
+                            <span class="data-value">2,250 kg</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Setpoint</span>
+                            <span class="data-value">80%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Fill Rate</span>
+                            <span class="data-value">0 kg/min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bin C -->
+                <div class="bin-card">
+                    <div class="bin-header">
+                        <span class="bin-name">BIN C</span>
+                        <span class="bin-status status-discharging">Discharging</span>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-container">
+                            <div class="bin-level bin-level-discharge" style="height: 58%;"></div>
+                            <div class="bin-setpoint" style="bottom: 80%;"></div>
+                        </div>
+                        <div class="bin-scale">
+                            <span>100%</span>
+                            <span>50%</span>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                    <div class="bin-info">
+                        <div class="bin-data">
+                            <span class="data-label">Current Level</span>
+                            <span class="data-value">58%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Weight</span>
+                            <span class="data-value">2,900 kg</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Setpoint</span>
+                            <span class="data-value">80%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Fill Rate</span>
+                            <span class="data-value">-32 kg/min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bin D -->
+                <div class="bin-card bin-card-alarm">
+                    <div class="bin-header">
+                        <span class="bin-name">BIN D</span>
+                        <span class="bin-status status-alarm">Alarm</span>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-container">
+                            <div class="bin-level bin-level-alarm" style="height: 92%;"></div>
+                            <div class="bin-setpoint" style="bottom: 85%;"></div>
+                        </div>
+                        <div class="bin-scale">
+                            <span>100%</span>
+                            <span>50%</span>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                    <div class="bin-info">
+                        <div class="bin-data">
+                            <span class="data-label">Current Level</span>
+                            <span class="data-value alarm-text">92%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Weight</span>
+                            <span class="data-value">4,600 kg</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Setpoint</span>
+                            <span class="data-value">85%</span>
+                        </div>
+                        <div class="bin-data">
+                            <span class="data-label">Fill Rate</span>
+                            <span class="data-value">0 kg/min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Production Speed & Trend Graph Row -->
+        <section class="charts-section">
+            <div class="speed-panel">
+                <h2 class="section-title">Production Speed</h2>
+                <div class="gauge-container">
+                    <div class="gauge">
+                        <div class="gauge-body"></div>
+                        <div class="gauge-needle"></div>
+                        <div class="gauge-cover">
+                            <span class="gauge-value">8.2</span>
+                            <span class="gauge-unit">TPH</span>
+                        </div>
+                    </div>
+                    <div class="speed-info">
+                        <div class="speed-item">
+                            <span class="speed-label">Target</span>
+                            <span class="speed-value">10.0 TPH</span>
+                        </div>
+                        <div class="speed-item">
+                            <span class="speed-label">Min Today</span>
+                            <span class="speed-value">6.5 TPH</span>
+                        </div>
+                        <div class="speed-item">
+                            <span class="speed-label">Max Today</span>
+                            <span class="speed-value">9.8 TPH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trend-panel">
+                <div class="trend-header">
+                    <h2 class="section-title">Live Trend</h2>
+                    <div class="trend-filters">
+                        <button class="filter-btn">15m</button>
+                        <button class="filter-btn active">1h</button>
+                        <button class="filter-btn">8h</button>
+                        <button class="filter-btn">24h</button>
+                    </div>
+                </div>
+                <div class="trend-chart">
+                    <div class="chart-placeholder">
+                        <svg viewBox="0 0 400 150" class="trend-svg">
+                            <polyline
+                                fill="none"
+                                stroke="#3b82f6"
+                                stroke-width="2"
+                                points="0,100 30,90 60,85 90,70 120,75 150,60 180,65 210,50 240,55 270,45 300,40 330,35 360,30 390,25"
+                            />
+                            <polyline
+                                fill="none"
+                                stroke="#10b981"
+                                stroke-width="2"
+                                stroke-dasharray="5,5"
+                                points="0,50 390,50"
+                            />
+                        </svg>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-color blue"></span>Production</span>
+                            <span class="legend-item"><span class="legend-color green"></span>Target</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alarm Panel -->
+        <section class="alarm-section">
+            <div class="alarm-header">
+                <h2 class="section-title">
+                    <span class="alarm-icon">🚨</span>
+                    Active Alarms
+                </h2>
+                <button class="ack-all-btn">Acknowledge All</button>
+            </div>
+            <div class="alarm-table-container">
+                <table class="alarm-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Source</th>
+                            <th>Message</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="alarm-row alarm-critical">
+                            <td>14:32:15</td>
+                            <td>BIN D</td>
+                            <td>High Level Exceeded - 92%</td>
+                            <td><span class="severity-badge critical">Critical</span></td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td><button class="ack-btn">ACK</button></td>
+                        </tr>
+                        <tr class="alarm-row alarm-warning">
+                            <td>14:28:44</td>
+                            <td>Conveyor 2</td>
+                            <td>Belt Speed Below Normal</td>
+                            <td><span class="severity-badge warning">Warning</span></td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td><button class="ack-btn">ACK</button></td>
+                        </tr>
+                        <tr class="alarm-row alarm-acknowledged">
+                            <td>14:15:22</td>
+                            <td>Motor M3</td>
+                            <td>Overload Trip</td>
+                            <td><span class="severity-badge critical">Critical</span></td>
+                            <td><span class="status-badge acknowledged">Acknowledged</span></td>
+                            <td><button class="ack-btn" disabled>ACK</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Production Report Section -->
+        <section class="report-section">
+            <div class="report-header">
+                <h2 class="section-title">
+                    <span>📈</span>
+                    Production Report
+                </h2>
+                <div class="report-filters">
+                    <button class="report-filter-btn" data-period="1h">1 Hour</button>
+                    <button class="report-filter-btn active" data-period="2h">2 Hours</button>
+                    <button class="report-filter-btn" data-period="1d">1 Day</button>
+                    <button class="report-filter-btn" data-period="7d">7 Days</button>
+                    <button class="report-filter-btn" data-period="30d">30 Days</button>
+                </div>
+                <button class="export-btn">📥 Export PDF</button>
+            </div>
+            
+            <div class="report-content">
+                <div class="report-summary-cards">
+                    <div class="report-card">
+                        <span class="report-card-label">Total Production</span>
+                        <span class="report-card-value">16.4</span>
+                        <span class="report-card-unit">Tons</span>
+                        <span class="report-card-change positive">+12.5%</span>
+                    </div>
+                    <div class="report-card">
+                        <span class="report-card-label">Avg Speed</span>
+                        <span class="report-card-value">8.2</span>
+                        <span class="report-card-unit">TPH</span>
+                        <span class="report-card-change positive">+5.1%</span>
+                    </div>
+                    <div class="report-card">
+                        <span class="report-card-label">Run Time</span>
+                        <span class="report-card-value">1:52</span>
+                        <span class="report-card-unit">Hours</span>
+                        <span class="report-card-change neutral">98%</span>
+                    </div>
+                    <div class="report-card">
+                        <span class="report-card-label">Downtime</span>
+                        <span class="report-card-value">8</span>
+                        <span class="report-card-unit">Minutes</span>
+                        <span class="report-card-change negative">-2.3%</span>
+                    </div>
+                    <div class="report-card">
+                        <span class="report-card-label">Efficiency</span>
+                        <span class="report-card-value">93.2</span>
+                        <span class="report-card-unit">%</span>
+                        <span class="report-card-change positive">+3.8%</span>
+                    </div>
+                    <div class="report-card">
+                        <span class="report-card-label">Alarms</span>
+                        <span class="report-card-value">4</span>
+                        <span class="report-card-unit">Events</span>
+                        <span class="report-card-change negative">+2</span>
+                    </div>
+                </div>
+
+                <div class="report-details">
+                    <div class="report-table-section">
+                        <h3 class="subsection-title">Bin-wise Production</h3>
+                        <table class="report-table">
+                            <thead>
+                                <tr>
+                                    <th>Bin</th>
+                                    <th>Production</th>
+                                    <th>Fill Cycles</th>
+                                    <th>Avg Fill Time</th>
+                                    <th>Efficiency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="bin-badge bin-a">Bin A</span></td>
+                                    <td>5.2 Tons</td>
+                                    <td>3</td>
+                                    <td>24 min</td>
+                                    <td><span class="efficiency-badge high">96%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="bin-badge bin-b">Bin B</span></td>
+                                    <td>3.8 Tons</td>
+                                    <td>2</td>
+                                    <td>28 min</td>
+                                    <td><span class="efficiency-badge medium">88%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="bin-badge bin-c">Bin C</span></td>
+                                    <td>4.5 Tons</td>
+                                    <td>3</td>
+                                    <td>22 min</td>
+                                    <td><span class="efficiency-badge high">94%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="bin-badge bin-d">Bin D</span></td>
+                                    <td>2.9 Tons</td>
+                                    <td>2</td>
+                                    <td>32 min</td>
+                                    <td><span class="efficiency-badge low">78%</span></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>16.4 Tons</strong></td>
+                                    <td><strong>10</strong></td>
+                                    <td><strong>26.5 min</strong></td>
+                                    <td><span class="efficiency-badge high">93.2%</span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <div class="report-chart-section">
+                        <h3 class="subsection-title">Hourly Production Trend</h3>
+                        <div class="hourly-chart">
+                            <div class="hourly-bars">
+                                <div class="hourly-bar-item">
+                                    <div class="hourly-bar" style="height: 65%;"></div>
+                                    <span class="hourly-label">13:00</span>
+                                    <span class="hourly-value">7.8T</span>
+                                </div>
+                                <div class="hourly-bar-item">
+                                    <div class="hourly-bar" style="height: 72%;"></div>
+                                    <span class="hourly-label">14:00</span>
+                                    <span class="hourly-value">8.6T</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Logs Section -->
+        <section class="logs-section">
+            <div class="logs-header">
+                <h2 class="section-title">
+                    <span>📋</span>
+                    System Logs
+                </h2>
+                <div class="logs-controls">
+                    <div class="log-type-filters">
+                        <button class="log-type-btn active" data-type="all">All</button>
+                        <button class="log-type-btn" data-type="info">Info</button>
+                        <button class="log-type-btn" data-type="warning">Warning</button>
+                        <button class="log-type-btn" data-type="error">Error</button>
+                        <button class="log-type-btn" data-type="system">System</button>
+                    </div>
+                    <div class="log-search">
+                        <input type="text" placeholder="Search logs..." class="log-search-input">
+                    </div>
+                    <button class="clear-logs-btn">Clear Logs</button>
+                </div>
+            </div>
+            
+            <div class="logs-container">
+                <div class="log-entry log-error">
+                    <span class="log-time">14:32:15</span>
+                    <span class="log-type-badge error">ERROR</span>
+                    <span class="log-source">[BIN D]</span>
+                    <span class="log-message">High level alarm triggered - Level exceeded 90% threshold (Current: 92%)</span>
+                </div>
+                <div class="log-entry log-warning">
+                    <span class="log-time">14:31:45</span>
+                    <span class="log-type-badge warning">WARNING</span>
+                    <span class="log-source">[BIN D]</span>
+                    <span class="log-message">Level approaching high limit - 88%</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">14:30:22</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[BIN A]</span>
+                    <span class="log-message">Filling operation started - Target: 85%</span>
+                </div>
+                <div class="log-entry log-warning">
+                    <span class="log-time">14:28:44</span>
+                    <span class="log-type-badge warning">WARNING</span>
+                    <span class="log-source">[CONVEYOR 2]</span>
+                    <span class="log-message">Belt speed below normal - Current: 72% of rated speed</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">14:25:10</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[BIN C]</span>
+                    <span class="log-message">Discharge completed - Total discharged: 2,400 kg</span>
+                </div>
+                <div class="log-entry log-system">
+                    <span class="log-time">14:22:33</span>
+                    <span class="log-type-badge system">SYSTEM</span>
+                    <span class="log-source">[PLC]</span>
+                    <span class="log-message">Communication established - Heartbeat OK</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">14:20:15</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[BIN C]</span>
+                    <span class="log-message">Discharge started - Gate valve opened</span>
+                </div>
+                <div class="log-entry log-error">
+                    <span class="log-time">14:15:22</span>
+                    <span class="log-type-badge error">ERROR</span>
+                    <span class="log-source">[MOTOR M3]</span>
+                    <span class="log-message">Overload trip activated - Current exceeded 125% of rated value</span>
+                </div>
+                <div class="log-entry log-warning">
+                    <span class="log-time">14:14:58</span>
+                    <span class="log-type-badge warning">WARNING</span>
+                    <span class="log-source">[MOTOR M3]</span>
+                    <span class="log-message">High current detected - 118% of rated value</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">14:10:00</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[BIN B]</span>
+                    <span class="log-message">Filling completed - Final level: 80%, Weight: 4,000 kg</span>
+                </div>
+                <div class="log-entry log-system">
+                    <span class="log-time">14:05:00</span>
+                    <span class="log-type-badge system">SYSTEM</span>
+                    <span class="log-source">[SHIFT]</span>
+                    <span class="log-message">Shift change recorded - Morning shift started</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">14:02:30</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[FEEDER]</span>
+                    <span class="log-message">Speed adjusted to 75% as per production requirement</span>
+                </div>
+                <div class="log-entry log-system">
+                    <span class="log-time">14:00:00</span>
+                    <span class="log-type-badge system">SYSTEM</span>
+                    <span class="log-source">[DASHBOARD]</span>
+                    <span class="log-message">System startup completed - All modules initialized</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">13:58:45</span>
+                    <span class="log-type-badge info">INFO</span>
+                    <span class="log-source">[GATE A]</span>
+                    <span class="log-message">Valve opened for Bin A filling operation</span>
+                </div>
+                <div class="log-entry log-system">
+                    <span class="log-time">13:55:12</span>
+                    <span class="log-type-badge system">SYSTEM</span>
+                    <span class="log-source">[DATABASE]</span>
+                    <span class="log-message">Historical data sync completed - 1,245 records updated</span>
+                </div>
+            </div>
+            
+            <div class="logs-footer">
+                <span class="logs-count">Showing 15 of 248 log entries</span>
+                <div class="logs-pagination">
+                    <button class="page-btn" disabled>Previous</button>
+                    <span class="page-info">Page 1 of 17</span>
+                    <button class="page-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Status & Daily Summary Row -->
+        <section class="bottom-section">
+            <div class="equipment-panel">
+                <h2 class="section-title">Equipment Status</h2>
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">⚙️</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Conveyor 1</span>
+                            <span class="equipment-status running">Running</span>
+                        </div>
+                        <div class="status-indicator on"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">⚙️</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Conveyor 2</span>
+                            <span class="equipment-status warning">Slow</span>
+                        </div>
+                        <div class="status-indicator warning"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">🔌</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Motor M1</span>
+                            <span class="equipment-status running">Running</span>
+                        </div>
+                        <div class="status-indicator on"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">🔌</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Motor M2</span>
+                            <span class="equipment-status running">Running</span>
+                        </div>
+                        <div class="status-indicator on"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">🔌</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Motor M3</span>
+                            <span class="equipment-status fault">Fault</span>
+                        </div>
+                        <div class="status-indicator off"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">🚪</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Gate Valve A</span>
+                            <span class="equipment-status running">Open</span>
+                        </div>
+                        <div class="status-indicator on"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">🚪</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Gate Valve B</span>
+                            <span class="equipment-status idle">Closed</span>
+                        </div>
+                        <div class="status-indicator off"></div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">📡</div>
+                        <div class="equipment-info">
+                            <span class="equipment-name">Feeder</span>
+                            <span class="equipment-status running">75%</span>
+                        </div>
+                        <div class="status-indicator on"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-panel">
+                <h2 class="section-title">Daily Production Summary</h2>
+                <div class="summary-chart">
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Bin A</div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 85%;"></div>
+                            </div>
+                            <div class="bar-value">42.5 T</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Bin B</div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 60%;"></div>
+                            </div>
+                            <div class="bar-value">30.0 T</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Bin C</div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 70%;"></div>
+                            </div>
+                            <div class="bar-value">35.3 T</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Bin D</div>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-warning" style="width: 36%;"></div>
+                            </div>
+                            <div class="bar-value">18.0 T</div>
+                        </div>
+                    </div>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Today</span>
+                            <span class="stat-value">125.8 T</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Avg Speed</span>
+                            <span class="stat-value">7.8 TPH</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Run Time</span>
+                            <span class="stat-value">16.1 hrs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Live Clock Update
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-GB', { 
+                day: '2-digit', 
+                month: 'short', 
+                year: 'numeric' 
+            });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Alarm row blinking effect
+        const alarmRows = document.querySelectorAll('.alarm-row.alarm-critical');
+        setInterval(() => {
+            alarmRows.forEach(row => {
+                row.classList.toggle('blink');
+            });
+        }, 1000);
+
+        // Report Filter Buttons
+        const reportFilterBtns = document.querySelectorAll('.report-filter-btn');
+        reportFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                reportFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Here you would update the report data based on selected period
+                console.log('Selected period:', btn.dataset.period);
+            });
+        });
+
+        // Log Type Filter Buttons
+        const logTypeBtns = document.querySelectorAll('.log-type-btn');
+        const logEntries = document.querySelectorAll('.log-entry');
+        
+        logTypeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                logTypeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filterType = btn.dataset.type;
+                
+                logEntries.forEach(entry => {
+                    if (filterType === 'all') {
+                        entry.style.display = 'flex';
+                    } else if (entry.classList.contains('log-' + filterType)) {
+                        entry.style.display = 'flex';
+                    } else {
+                        entry.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Log Search
+        const logSearchInput = document.querySelector('.log-search-input');
+        logSearchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            logEntries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    entry.style.display = 'flex';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+        });
+
+        // Trend Filter Buttons
+        const trendFilterBtns = document.querySelectorAll('.trend-filters .filter-btn');
+        trendFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                trendFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // ACK Buttons
+        const ackBtns = document.querySelectorAll('.ack-btn:not(:disabled)');
+        ackBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const row = btn.closest('.alarm-row');
+                row.classList.remove('alarm-critical', 'alarm-warning');
+                row.classList.add('alarm-acknowledged');
+                const statusBadge = row.querySelector('.status-badge');
+                statusBadge.textContent = 'Acknowledged';
+                statusBadge.classList.remove('active');
+                statusBadge.classList.add('acknowledged');
+                btn.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>
